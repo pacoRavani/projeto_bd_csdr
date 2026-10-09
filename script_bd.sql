@@ -24,4 +24,16 @@ SELECT * FROM aplicativo;
 INSERT INTO aplicativo (nome , desenvolvedora , descricao , categoria , criado_por , criado_em ) 
 VALUES('whatsapp', 'meta', 'aplicativo de comunicacao', 'todas as idades', 'meta', '2009-02-24 14:00:00');
 
+CREATE TABLE public.usuario (
+  id_usuario serial not null,
+  nome character varying(100) not null,
+  email character varying(150) not null,
+  senha_hash character varying(255) not null,
+  perfil character varying(255) not null,
+  criado_em timestamp without time zone null,
+  atualizado_em timestamp without time zone null,
+  constraint usuario_pkey primary key (id_usuario)
+);
+
+
 
