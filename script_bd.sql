@@ -78,10 +78,8 @@ CREATE TABLE relatorio_divergencia(
  aplicativo_id varchar(36),
  dispositivo_id varchar(36),
  descricao_problema text not null,
- status status_relatorio E,
- criado_em timestamp,
-
-
+ status varchar (255),
+ criado_em timestamp
 
 );
 
