@@ -50,19 +50,31 @@ INSERT INTO usuario (nome, email, senha_hash, perfil, criado_em, atualizado_em) 
 
 
 CREATE TABLE dispositivo(
- id_dispositivo SERIAL PRIMARY KEY,
- usuario_id varchar(36),
- modelo  varchar(100) not null,
- sistema_operacional varchar(50)not null,
- versao_so   varchar(50)not null,
- arquitetura_cpu  varchar(50),
- nucleos_cpu   int,
- frequencia_cpu_ghz  decimal(4,2),
- memoria_ram_mb  int not null ,
- armazenamento_total_mb   bigint not null,
- armazenamento_livre_mb   bigint not null,
- coletado_em  timestamp
+  id_dispositivo SERIAL PRIMARY KEY,
+  fk_usuario int,
+  modelo  varchar(100) not null,
+  sistema_operacional varchar(50)not null,
+  versao_so   varchar(50)not null,
+  arquitetura_cpu  varchar(50),
+  nucleos_cpu   int,
+  frequencia_cpu_ghz  decimal(4,2),
+  memoria_ram_mb  int not null ,
+  armazenamento_total_mb   bigint not null,
+  armazenamento_livre_mb   bigint not null,
+  coletado_em  timestamp,
+  constraint fk_usuario foreign key (fk_usuario) references usuario (id_usuario)
 );
+select * from usuario
+
+select * from dispositivo
+
+
+INSERT INTO dispositivo (fk_usuario, modelo, sistema_operacional, versao_so, arquitetura_cpu, nucleos_cpu, frequencia_cpu_ghz, memoria_ram_mb, armazenamento_total_mb, armazenamento_livre_mb, coletado_em) VALUES (3, 'ThinkPad L14', 'Windows 11 Pro', '23H2', 'x86_64', 8, 2.10, 16384, 512000, 320500, '2026-10-21 10:00:00');
+
+INSERT INTO dispositivo (fk_usuario, modelo, sistema_operacional, versao_so, arquitetura_cpu, nucleos_cpu, frequencia_cpu_ghz, memoria_ram_mb, armazenamento_total_mb, armazenamento_livre_mb, coletado_em) VALUES (2, 'Ubuntu Server Proliant', 'Ubuntu LTS', '24.04', 'x86_64', 16, 3.50, 32768, 1024000, 850000, '2026-10-21 11:15:00');
+
+INSERT INTO dispositivo (fk_usuario, modelo, sistema_operacional, versao_so, arquitetura_cpu, nucleos_cpu, frequencia_cpu_ghz, memoria_ram_mb, armazenamento_total_mb, armazenamento_livre_mb, coletado_em) VALUES (1, 'Galaxy S24', 'Android', '14.0', 'ARM64', 8, 3.39, 8192, 256000, 120000, '2026-10-21 11:45:00');
+
 
 CREATE TABLE sessao_usuario(
  id_sessao_usuario SERIAL PRIMARY KEY,
