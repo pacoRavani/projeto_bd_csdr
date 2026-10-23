@@ -113,7 +113,9 @@ CREATE TABLE requisito_aplicativo(
  ram_minima_mb int not null,
  espaco_armazenamento_mb bigint not null,
  frequencia_cpu_minima_ghz decimal(4,2),
- nucleos_cpu_minimos int
+ nucleos_cpu_minimos int,
+ 
+ constraint fk_aplicativo foreign key (fk_aplicativo) references aplicativo (id_aplicativo)
 );
 
 select * from requisito_aplicativo
