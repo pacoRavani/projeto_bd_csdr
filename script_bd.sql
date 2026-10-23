@@ -116,14 +116,18 @@ CREATE TABLE requisito_aplicativo(
  nucleos_cpu_minimos int
 );
 
+select * from requisito_aplicativo
 
-SELECT * INTO requisito_aplicativo;
+INSERT INTO requisito_aplicativo ( fk_aplicativo, tipo_requisito, so_minimo, versao_so_minima, ram_minima_mb, espaco_armazenamento_mb, frequencia_cpu_minima_ghz, nucleos_cpu_minimos
+) VALUES 
 
-SELECT * from aplicativo;
+(1, 'Mínimo', 'Windows', '10 (64-bit)', 8192, 51200, 3.20, 4),
 
-INSERT INTO requisito_aplicativo (fk_aplicativo , tipo_requisito ,  so_minimo , versao_so_minima , ram_minima_mb , espaco_armazenamento_mb , frequencia_cpu_minima_ghz , nucleos_cpu_minimos)
-VALUES (1, '' )
+(2, 'Recomendado', 'Android', '11.0', 4096, 2048, 2.00, 8),
 
+(3, 'Mínimo', 'macOS', '12.0 (Monterey)', 4096, 10240, 1.50, 2);
+
+drop table requisito_aplicativo
 CREATE TABLE relatorio_divergencia(
  id_relatorio_divergencia SERIAL PRIMARY KEY,
  usuario_id varchar(36) not null,
