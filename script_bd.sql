@@ -130,7 +130,7 @@ INSERT INTO requisito_aplicativo ( fk_aplicativo, tipo_requisito, so_minimo, ver
 (3, 'Mínimo', 'macOS', '12.0 (Monterey)', 4096, 10240, 1.50, 2);
 
 
-CREATE TABLE id_consentimento_usuario(
+CREATE TABLE consentimento_usuario(
  id_consentimento_usuario SERIAL PRIMARY KEY,
  usuario_id varchar(36) not null,
  termo_id int not null,
@@ -154,6 +154,19 @@ VALUES ('12345678-abcd-ef01-2345-6789abcdef01', 3, FALSE);
 
 SELECT * FROM consentimento_usuario;
 
+CREATE TABLE relatorio_divergencia(
+ id_relatorio_divergencia SERIAL PRIMARY KEY,
+ fk_usuario int not null,
+ fk_aplicativo int,
+ fk_dispositivo int,
+ descricao_problema text not null,
+ status varchar(255),
+ criado_em timestamp,
+
+ constraint fk_usuario foreign key (fk_usuario) references usuario (id_usuario),
+ constraint fk_aplicativo foreign key (fk_aplicativo) references aplicativo (id_aplicativo),
+ constraint fk_dispositivo foreign key (fk_dispositivo) references dispositivo (id_dispositivo)
+);
 
 CREATE TABLE diagnostico_compatibilidade(
 id_diagnostico_compatibilidade SERIAL PRIMARY KEY,
