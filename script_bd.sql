@@ -129,17 +129,6 @@ INSERT INTO requisito_aplicativo ( fk_aplicativo, tipo_requisito, so_minimo, ver
 
 (3, 'Mínimo', 'macOS', '12.0 (Monterey)', 4096, 10240, 1.50, 2);
 
-drop table requisito_aplicativo
-CREATE TABLE relatorio_divergencia(
- id_relatorio_divergencia SERIAL PRIMARY KEY,
- usuario_id varchar(36) not null,
- aplicativo_id varchar(36),
- dispositivo_id varchar(36),
- descricao_problema text not null,
- status varchar (255),
- criado_em timestamp
-
-);
 
 CREATE TABLE id_consentimento_usuario(
  id_consentimento_usuario SERIAL PRIMARY KEY,
@@ -176,13 +165,24 @@ detalhes_falhas json,
 executado_em timestamp
 );
 
-create table public.notificacao (
-  id character varying(36) not null,
-  usuario_id character varying(36) not null,
-  titulo character varying(150) not null,
-  mensagem text not null,
-  lida boolean null,
-  criada_em timestamp without time zone null,
-  constraint notificacao_pkey primary key (id)
-) TABLESPACE pg_default;
+CREATE table notificacao (
+  id_notificacao SERIAL PRIMARY KEY,
+  fk_usuario   int not null,
+  titulo      varchar(150) not null,
+  mensagem     text not null,
+  lida         boolean,
+  criada_em    timestamp,
+  constraint fk_usuario foreign key (fk_usuario) references usuario (id_usuario)
+);
+
+INSERT INTO notificacao (fk_usuario, titulo, mensagem, lida, criada_em) 
+VALUES (1, 'Bem-vindo ao sistema!', 'Olá! Seu cadastro foi realizado com sucesso. Explore nossa plataforma.', false, '2026-10-29 10:00:00');
+
+INSERT INTO notificacao (fk_usuario, titulo, mensagem, lida, criada_em)
+VALUES (2, 'Novo login detectado', 'Identificamos um novo acesso à sua conta a partir de um dispositivo não reconhecido.', false, '2026-10-29 11:15:30');
+
+INSERT INTO notificacao (fk_usuario, titulo, mensagem, lida, criada_em) 
+VALUES (3, 'Perfil atualizado', 'As alterações na sua foto de perfil e biografia foram salvas com sucesso.', true, '2026-10-29 12:00:00');
+
+select * from notificacao
 
