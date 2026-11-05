@@ -168,6 +168,17 @@ CREATE TABLE relatorio_divergencia(
  constraint fk_dispositivo foreign key (fk_dispositivo) references dispositivo (id_dispositivo)
 );
 
+  INSERT INTO relatorio_divergencia (fk_usuario, fk_aplicativo, fk_dispositivo, descricao_problema, status, criado_em)
+  VALUES (1, 1, 4, 'O aplicativo fechou sozinho ao tentar emitir a nota fiscal na tela de checkout.', 'Pendente', '2026-11-05 10:00:00');
+
+  INSERT INTO relatorio_divergencia (fk_usuario, fk_aplicativo, fk_dispositivo, descricao_problema, status, criado_em)
+  VALUES (2, 3, 3, 'Não estou conseguindo recuperar a minha senha através do e-mail cadastrado.', 'Em Análise', '2026-11-05 11:15:00');
+
+  INSERT INTO relatorio_divergencia (fk_usuario, fk_aplicativo, fk_dispositivo, descricao_problema, status, criado_em)
+  VALUES (3, 2, 2, 'O botão de atualizar perfil não responde ao clique na versão web do app.', 'Resolvido', '2026-11-05 11:45:00');
+
+  select * from relatorio_divergencia;
+
 CREATE TABLE diagnostico_compatibilidade(
 id_diagnostico_compatibilidade SERIAL PRIMARY KEY,
 fk_usuario int not null,
